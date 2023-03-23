@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Template</title>
+    <style>
+        .avatars{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        picture{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        img.disabled{
+            opacity: 0.3;
+        }
+    </style>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <h1>Women in Tech</h1>
+    <div id="app"></div>
+    
+    <script type="text/babel">
+        const $app = document.getElementById('app'); //para nombrar variables o constantes se puede usar $ o _
+        const h = React.createElement; //para crear elementos de react
+        
+        const Avatar = params => {
+            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+
+            /*return h('img', {src});*/
+            return <img src={src}/>
+        };
+
+        ReactDOM.render(
+            <div>
+                <Avatar id={1}/>
+                <Avatar id={2}/>
+                <Avatar id={3}/>
+                <Avatar id={4}/>
+                <Avatar id={5}/>
+            </div>, 
+            $app
+        );
+
+        /*const Avatar = params => {
+            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+            return `
+                <picture>
+                    <img src="${src}" alt="Foto de ${params.name}">
+                    ${params.name}
+                </picture>
+            `;
+        }
+
+        const avatars = [
+            {id: 1, name: 'Ana'},
+            {id: 2, name: 'Maria'},
+            {id: 3, name: 'Luisa'},
+            {id: 4, name: 'Lorena'},
+            {id: 5, name: 'Luisa'},
+        ];
+
+        $app.innerHTML = `
+            <div class="avatars">
+                ${avatars.map(avatar => Avatar(avatar)).join('')}
+            </div>
+        `;
+
+        $app.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('disabled'); //toggle funciona como un interruptor que se enciende y se apaga cada vez que se hace click
+            });
+        });*/
+    </script>
+</body>
+</html>
